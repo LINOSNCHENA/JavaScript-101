@@ -1,0 +1,46 @@
+<html>
+  <body>
+    <h1>Task Type 7 : Use ifelse, case and, for loop</h1>
+    <script>
+      var salary = 3000000;
+      var s1 = 0;
+      var s2 = 0;
+      var s3 = 0;
+      var max1 = 1200000;
+      var max2 = 2000000; // less than
+      var max3 = 2000000; // More than
+
+      var tax;
+      var netpay;
+      if (salary < max1) {
+        s1 = (salary * 15) / 100;
+        console.log("tax s1 =" + s1);
+        // return s1;
+      } else {
+        s1 = (120000 * 15) / 100;
+      }
+
+      //done
+      if (salary > max1) {
+        if (salary < max3) {
+          s2 = ((salary - max1) * 20) / 100;
+        } else {
+          s2 = (800000 * 20) / 100;
+        }
+
+        console.log("tax s2 = " + s2);
+      }
+      if (salary > max3) {
+        s3 = ((salary - max3) * 30) / 100;
+        console.log("tax s3 = " + s3);
+      }
+
+      tax = s1 + s2 + s3;
+      netpay = salary - tax;
+      console.log("salary" + salary);
+      console.log("tax" + tax);
+      console.log("netpay" + netpay);
+      console.log("s1 =" + s1);
+    </script>
+  </body>
+</html>

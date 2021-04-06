@@ -1,0 +1,166 @@
+<html>
+  <body>
+    <h1>Object 12 : PROMISE Property</h1>
+    <script>
+      // 1. DOWNLOADFILE
+      console.log("================|1.[ECMAScript 5 Syntax]|=================");
+      var isNetworkOK = true;
+
+      function downloadFile5(url) {
+        console.log("Start downloading file ..."); // ***
+        var willIGetAFile5 = new Promise(function (resolve, reject) {
+          if (isNetworkOK) {
+            setTimeout(function () {
+              console.log("Complete the download process#1!"); // ***
+              var file = {
+                fileName: "fileOne.mp2",
+                fileContent: "...",
+                fileSize: "23 MB",
+              };
+              console.log(file);
+              resolve(file); // fulfilled
+            }, 5 * 1000); // 5 Seconds
+          } else {
+            var error = new Error("There is a problem with the network.");
+            reject(error); // reject
+          }
+        });
+        return willIGetAFile5; // Return a Promise.
+      }
+
+      function openFile5(file) {
+        console.log("Start opening file ..."); // ***
+        var willFileOpen5 = new Promise(function (resolve, reject) {
+          var message = "File " + file.fileName + " opened!";
+          resolve(message);
+        });
+
+        return willFileOpen5; // Return a Promise.
+      }
+
+      console.log("Start app1.."); // ***
+      var willIGetAFile5 = downloadFile5("http://example.com/file.mp3");
+
+      willIGetAFile5
+        .then(openFile5) // Chain it!
+        .then(function (fulfilled) {
+          console.log(fulfilled);
+        })
+        .catch(function (error) {
+          console.log(error.message);
+        });
+
+      console.log("End App1 .."); //
+
+      console.log("==============|2-ECMAScript 6 Syntax|===================");
+
+      downloadFile6 = function (url) {
+        console.log("Start downloading file ..."); // ***
+
+        // A Promise
+        var willIGetAFile6 = new Promise((resolve, reject) => {
+          if (isNetworkOK) {
+            setTimeout(function () {
+              console.log("Complete the download process #2!"); //
+              var file = {
+                fileName: "fileTwo.mp3",
+                fileContent: "...",
+                fileSize: "33 MB",
+              };
+              console.log(file);
+              resolve(file); // fulfilled
+            }, 5 * 1000); // 5 Seconds
+          } else {
+            var error = new Error("There is a problem with the network.");
+            reject(error); // reject
+          }
+        });
+
+        return willIGetAFile6; // Return a Promise.
+      };
+
+      openFile6 = function (file) {
+        console.log("Start opening file ..."); // ***
+
+        var willFileOpen6 = new Promise((resolve, reject) => {
+          var message = "File " + file.fileName + " opened!";
+          resolve(message);
+        });
+
+        return willFileOpen6; // Return a Promise.
+      };
+
+      console.log("Start app2.."); // ***
+
+      var willIGetAFile6 = downloadFile6("http://example.com/file.mp3");
+
+      willIGetAFile6
+        .then(openFile) // Chain it!
+        .then(function (fulfilled) {
+          console.log(fulfilled);
+        })
+        .catch(function (error) {
+          console.log(error.message);
+        });
+
+      console.log("End App2 .."); // ***
+
+      // 7. [ECMAScript 7 Syntax]
+      console.log("============|3-ECMAScript 7 Syntax|=================");
+
+      var isNetworkOK = true;
+      async function downloadFile7(url) {
+        console.log("Start downloading file ..."); // ***
+        var willIGetAFile7 = new Promise((resolve, reject) => {
+          if (isNetworkOK) {
+            setTimeout(function () {
+              console.log("Complete the download process! #3"); // ***
+              var file = {
+                fileName: "fileThree.mp4",
+                fileContent: "...",
+                fileSize: "43 MB",
+              };
+              resolve(file); // fulfilled
+            }, 5 * 1000); // 5 Seconds
+          } else {
+            var error = new Error("There is a problem with the network.");
+            reject(error); // reject
+          }
+        });
+        return willIGetAFile7; // Return a Promise.
+      }
+
+      // An Asynchronous function return a Promise
+      async function openFile(file) {
+        console.log("Start opening file ..."); // ***
+
+        var willFileOpen7 = new Promise((resolve, reject) => {
+          var message = "File " + file.fileName + " opened!";
+          resolve(message);
+        });
+        return willFileOpen7; // Return a Promise.
+      }
+
+      // Main Function (Asynchronous function)
+      async function mainFunction() {
+        try {
+          console.log("Start app3.."); // ***
+          var file = await downloadFile7("http://example.com/file.mp3");
+          console.log(file);
+          var message = await openFile(file);
+          console.log(message);
+          console.log("End App3 .."); // ***
+        } catch (e) {
+          console.log(e.message);
+        }
+      }
+      // Call Main Function:
+      (async () => {
+        await mainFunction();
+      })();
+
+      // 4.  Waiting for downloads
+      console.log("==================|4-WAITING ENDS|==================");
+    </script>
+  </body>
+</html>

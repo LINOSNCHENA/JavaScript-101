@@ -1,0 +1,96 @@
+<html>
+  <body>
+    <script>
+      	<h1>Object VersionOne: Define Prototype Properties</h1>
+      //1. Object A
+      var myOoj = { name: "Nikolas", city: "Kazan", loves: "Fanta" };
+      console.log(myOoj); // Nikolas
+
+      // 2. Object B
+      function myFun(name, city) {}
+      myFun.prototype.name = "Lorena";
+      myFun.prototype.city = "Vienna";
+      var myFun1 = new myFun("PEMBA", "MONZE");
+      console.log(myFun1); // Lorena
+      console.log(myFun1); // Lorena
+      // 3. Object C.
+      function myFun(name, city, loves) {
+        this.name = name;
+        this.city = city;
+        this.loves = loves;
+      }
+      var myFun2 = new myFun("Loen", "Praha", "Karate");
+      console.log(myFun2); // Leon
+      console.log(myFun2); // Leon
+      // 4. Object D
+      function Welcome(name) {
+        this.name = name;
+      }
+      Welcome.prototype.sayHello = function () {
+        return "Privet, " + this.name + "!";
+      };
+      var welcome = new Welcome("Presly");
+
+      welcome.sayHello();
+      console.log(welcome);
+      console.log(welcome);
+      // 5. Object E.
+      function RoomService(name, order) {
+        Welcome.call(this, name);
+        this.order = order;
+      }
+
+      RoomService.prototype = Object.create(Welcome.prototype);
+      RoomService.prototype.constructor = RoomService;
+      RoomService.prototype.announceDelivery = function () {
+        return "Your " + this.order + " has arrived!";
+      };
+      RoomService.prototype.deliverOrder = function () {
+        return this.sayHello() + " " + this.announceDelivery();
+      };
+
+      var delivery = new RoomService("Catherine", "Lusaka", "Chelston");
+      delivery.sayHello(); ///
+      delivery.announceDelivery(); ///
+      delivery.deliverOrder(); //
+      console.log(delivery);
+      // 6. OBject X
+      function Movie(title) {
+        this.title = title;
+      }
+
+      const harryPotter = new Movie("Harry Potter");
+      const rushHour2 = new Movie("Rush Hour 2");
+      const fastAndFurious = new Movie("Fast And Furious");
+
+      console.log(harryPotter.constructor.name);
+      console.log(rushHour2.constructor.name);
+      console.log(fastAndFurious.constructor.name);
+      console.log(fastAndFurious.title);
+      console.log(fastAndFurious);
+      // 7. OBject Y
+      const Warrior = function (name) {
+        this.name = name;
+        this.hp = 100;
+      };
+
+      Warrior.prototype.bash = function (target) {
+        target.hp -= 15;
+      };
+      Warrior.prototype.omniSlash = function (target) {
+        if (target.hp < 50) {
+          return;
+        }
+        target.hp -= 50;
+      };
+      const katongo = new Warrior("KatongoX");
+      const kelvin = new Warrior("KelvinXXX");
+
+      katongo.bash(kelvin);
+      console.log(katongo);
+      console.log(kelvin);
+      alert(kelvin + " " + katongo);
+      <h1>Kelvin: Class in JavaScript</h1>
+    </script>
+  </body>
+</html>

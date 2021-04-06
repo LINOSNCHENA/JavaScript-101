@@ -1,0 +1,89 @@
+<!-- LECTURE NO. 21 -->
+
+<html>
+  <body>
+    <h1>Object 10 : SET Property</h1>
+    <script>
+      let CITIES = ["Zlin", "Lusaka", "Vasteras", "Kazan"];
+      // Create a Set from an Array(A) and arrays(B)
+      var COUNTRIES = new Set([
+        "Czechia",
+        "Russia",
+        "Zambia",
+        CITIES,
+        CITIES[1],
+      ]);
+
+      console.log(
+        "==================The Size of Object=================1====="
+      ); // 3
+      console.log(COUNTRIES.size); // 3
+      console.log(
+        "==================Names: Arrays + object=============2======"
+      );
+      console.log(COUNTRIES);
+
+      console.log("Type 1 is : " + typeof COUNTRY); // string
+      console.log("Tyep 2 is : " + typeof COUNTRIES); // string
+      console.log("Type 3 is : " + typeof CITIES[2]); // string
+      console.log("Type 4 is : " + typeof CITIES); // strin
+
+      console.log(
+        "===========Contents: LOOP for Arrays object=========3======"
+      );
+      for (let COUNTRY of COUNTRIES) {
+        console.log(COUNTRY);
+      }
+      console.log(
+        "================object+Addition(Pemba)==============4======"
+      );
+      var thisCOUNTRIES = COUNTRIES.add("Pemba");
+      console.log(COUNTRIES);
+      for (let COUNTRY of COUNTRIES) {
+        console.log(COUNTRY);
+      }
+      console.log(
+        "=============Object + Addition (Repeat Pemba)=======5======"
+      );
+      var thisCOUNTRIES = COUNTRIES.add("Pemba");
+      var thisCOUNTRIES = COUNTRIES.add("Monze");
+      console.log(COUNTRIES);
+      for (let COUNTRY of COUNTRIES) {
+        console.log(COUNTRY);
+      }
+      console.log("========= Object + Deletion(czech/pemba/monze) ====6======");
+      // Delete an element:
+      var deleted1 = COUNTRIES.delete("Czechia");
+      var deleted2 = COUNTRIES.delete("Pemba");
+      var deleted3 = COUNTRIES.delete("Monze");
+      console.log("Deleted? " + deleted1); // true
+      console.log("Deleted? " + deleted2); // true
+      console.log("Deleted? " + deleted3); // true
+      console.log(COUNTRIES);
+      for (let COUNTRY of COUNTRIES) {
+        console.log(COUNTRY);
+      }
+      console.log("======= Object + Presence(Monze+Pemba) ============7======");
+      var has1 = COUNTRIES.has("Monze");
+      console.log(has1); // true
+      var has2 = COUNTRIES.has("Pemba");
+      console.log(has2); // true
+
+      console.log("=============== Object + Pair-Printed =============8======");
+      // Iterator Object: as Pair key=> Value
+      var iteratorEntries = COUNTRIES.entries();
+      var entry;
+      while (!(entry = iteratorEntries.next()).done) {
+        console.log(entry.value);
+      }
+      console.log("=============Deletion Everything==================9======");
+      // Remove all elements.
+      COUNTRIES.clear();
+      console.log(COUNTRIES);
+      console.log("Size after clear: " + COUNTRIES.size);
+      console.log(
+        "===========Script COMPLETED=======================z10======"
+      );
+    </script>
+  </body>
+</html>

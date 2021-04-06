@@ -1,0 +1,123 @@
+<!-- COLLECTION - MAP() -->
+
+<html>
+  <body>
+    <h1>Object 9 : MAP Property</h1>
+    <script>
+      // 1. Creating a MAP() object
+      var data = [
+        ["026096-2101-1221", "Diana"],
+        ["026096-2112-5535", "Katherine"],
+        ["026096-2103-4222", "Kristina"],
+      ];
+      var myContacts = new Map(data);
+      myContacts.set("026097-1004-1221", "Nikolas");
+      myContacts.set("026097-1005-4555", "Lorena");
+      myContacts.set("026097-1006-12655", "NoriaX");
+      myContacts.set("026097-1007-2232", "Leon");
+
+      // 2. Read MAP()
+      for (let arr of myContacts) {
+        console.log(arr);
+        console.log(" - Number: " + arr[0]);
+        console.log(" - Name: " + arr[1]);
+      }
+      // 3 Addition and Size MAP()
+      console.log(myContacts.size); // 4
+      myContacts.set("026097-1008-12655", "Noria");
+      myContacts.set("026097-1009-6575", "Wendy");
+      myContacts.set("026097-1010-4211", "Irene");
+      console.log(myContacts);
+      // 4. Update MAP()
+      myContacts.set("026097-1006-12655", "NoriaX");
+
+      console.log(myContacts);
+      for (let arr of myContacts) {
+        console.log(arr);
+        console.log(" - Number: " + arr[0]);
+        console.log(" - Name: " + arr[1]);
+      }
+      console.log(myContacts.size); // 6
+
+      // 5. PRESENT OR NOT?
+      console.log("============Has2Delete2==================");
+      var has = myContacts.has("026097-1010-4211");
+      console.log("Has key 026097-1010-4211? " + has); // TRUE
+      console.log("Size: " + myContacts.size); // 3
+      var has2 = myContacts.has("Wendy");
+      console.log("Has key Wendy? " + has2); // TRUE
+      console.log("Size: " + myContacts.size); // 3
+      // 6. DELETE ELEMENT
+      var deleted = myContacts.delete("026096-2103-4222");
+      console.log("Deleted? " + deleted); // FLASE
+      console.log("Size after delete: " + myContacts.size); // 2
+      var deleted2 = myContacts.delete("Wendy");
+      console.log("Deleted? " + deleted2); // FLASE
+      console.log("Size after delete: " + myContacts.size); // 2
+
+      // 7. XXX Entries()
+      console.log("============ENTRIES()======================");
+      var entries = myContacts.entries();
+      var entry;
+      while (!(entry = entries.next()).done) {
+        var array = entry.value;
+        console.log(array); //
+      }
+
+      // 8. XXXYYY KEYS()
+      console.log("============KEYS()======================");
+      var iteratorPhones = myContacts.keys();
+      var entry;
+      while (!(entry = iteratorPhones.next()).done) {
+        var phone = entry.value;
+        console.log(phone); //
+      }
+      // 9. xx VALUES()
+      console.log("============VALUE()======================");
+      var iteratorNames = myContacts.values();
+      var entry;
+      while (!(entry = iteratorNames.next()).done) {
+        var name = entry.value;
+        console.log(name); // Tom
+      }
+      // 10. xx ALL()
+      console.log("============VALUE()======================");
+      var showContact = function (value, key, thisMap) {
+        console.log("MobileNumber: " + key + ". Name: " + value);
+      };
+
+      myContacts.forEach(showContact, myContacts);
+      // 11. DELETE ALL
+      myContacts.clear();
+      console.log("Size after clearing: " + myContacts.size); // 0
+
+      // 12. weakMAP()
+      console.log("============weakMAP()======================");
+      var key1 = {}, // An Object
+        key2 = { foo: "bar" },
+        key3 = { bar: "foo" },
+        o1 = {},
+        o2 = function () {},
+        o3 = window,
+        o4 = window,
+        data = [
+          [key1, "Nikolas"],
+          [key2, "Lorena"],
+          [key3, "Leon"],
+          [o1, "Anna"],
+          [o2, "Presly"],
+          [o3, "Noria"],
+          [o4, key2],
+        ];
+      var myWeakMap = new WeakMap(data);
+      console.log(myWeakMap.get(key1));
+      for (item in myWeakMap) {
+        console.log(item); // Fails
+      }
+      console.log(myWeakMap);
+      console.log(myWeakMap.get(o4));
+
+      console.log("===================END()======================");
+    </script>
+  </body>
+</html>
