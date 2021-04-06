@@ -1,0 +1,141 @@
+<!-- JavaScript #1. Abstraction -->
+
+<html>
+  <body>
+    <h1>Object OOP 1 : Abstraction Property </h1>
+    <script>
+      class ClassName {
+        constructor(init1, init2) {
+          console.log("1. ABSTRACTION");
+          this.prop1 = init1;
+          this.prop2 = init2;
+        }
+        get props() {
+          return [this.prop1, this.prop2];
+        }
+        set props(val) {
+          [this.prop1, this.prop2] = val;
+        }
+        methodInst() {
+          // Instance level method.
+          // Do something...
+        }
+        static methodStat() {
+          // Class level method.
+          // Do something...
+        }
+      }
+
+      const inst = new ClassName();
+      inst.props = [1, 2];
+      inst.methodInst();
+      ClassName.methodStat();
+      console.log(inst);
+      /////////////////////////////////////////////////////////////////////// PART B ///////////////
+    </script>
+
+    <script>
+      class Person {
+        constructor({ firstName, lastName, job }) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+          this.job = job;
+          this.skills = [];
+          Person._amount = Person._amount || 0;
+          Person._amount++;
+        }
+
+        static get amount() {
+          return Person._amount;
+        }
+
+        get fullName() {
+          return `${this.firstName} ${this.lastName}`;
+        }
+
+        set fullName(fN) {
+          if (/[A-Za-z]\s[A-Za-z]/.test(fN)) {
+            [this.firstName, this.lastName] = fN.split(" ");
+          } else {
+            throw Error("Bad fullname");
+          }
+        }
+
+        learn(skill) {
+          this.skills.push(skill);
+        }
+      }
+
+      class Job {
+        constructor(company, position, salary) {
+          this.company = company;
+          this.position = position;
+          this.salary = salary;
+        }
+      }
+
+      const john = new Person({
+        firstName: "John",
+        lastName: "Doe",
+        job: new Job("Youtube", "developer", 200000),
+      });
+
+      const roger = new Person({
+        firstName: "Roger",
+        lastName: "Federer",
+        job: new Job("ATP", "tennis", 1000000),
+      });
+
+      john.fullName = "Nikolas Lorena Leon";
+      john.learn("es6");
+      roger.learn("programming");
+      john.learn("es7");
+      console.log(john);
+    </script>
+      <script>
+        //Created an abstract class (constructor function)
+        function Employee() {
+          this.empName = "empName";
+          if (this.constructor === Employee) {
+            throw new Error(
+              "You cannot create an instance of     Abstract Class"
+            );
+          }
+        }
+        // Method (function) of our abstract class
+        Employee.prototype.display = function () {
+          return "Employee name is: " + this.empName;
+        };
+        //Created a subclass (constructor function)
+        function Manager(fullName) {
+          this.empName = fullName;
+        }
+        //Created an object of subclass (extending abstract class)
+        Manager.prototype = Object.create(Employee.prototype);
+        var mang = new Manager("Lusaka Zlin");
+        console.log(mang.display());
+      </script>
+  
+      <script>
+        class Employee2 {
+          constructor() {
+            if (this.constructor == Employee2) {
+              throw new Error(" Object of Abstract Class cannot be created");
+            }
+          }
+          display() {
+            throw new Error("Abstract Method has no implementation");
+          }
+        }
+        class Manager2 extends Employee2 {
+          display() {
+            //super.display();
+            console.log("I am a Manager Like Old Guys- Java");
+          }
+        }
+        //var emp = new Employee;
+        var mang = new Manager2();
+        mang.display();
+      </script>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+<html>
+  <body>
+    <h1>Object 11 : CATCH ERROR Property</h1>
+    <script>
+      // 1. Error
+      console.log("Three");
+      console.log("============|1.error|====================");
+      let myObj = {};
+      console.log("Two");
+      console.log("One");
+      //  myObj.showMe();
+      console.log("Let's go!");
+
+      // 2. Handling error with try-catch
+      console.log("============|2.try-catch|==================");
+      console.log("Three");
+      // var myObj = {};
+      console.log("Two");
+      console.log("One");
+      try {
+        myObj.showMe(); // ==> Error!
+        // This code will be ignored
+        console.log("Zed1 - !!!");
+      } catch (e) {
+        console.log("Zed2 - Catched error: " + e);
+        console.log("Zed3 - OK continue ...");
+      }
+      console.log("Let's go!");
+
+      // 3. try-catch-finally
+      console.log("============|3.try-catch-finally|========");
+      function getGreeting(language) {
+        try {
+          console.log("1-Code in try block (*)");
+            let v = language.greeting();
+          console.log("2-Code in try block (**)");
+          return v;
+        } catch (e) {
+          console.log("3-Code in catch block. Something Error: ZED1 = " + e);
+        } finally {
+           console.log("4-Code in finally block");
+        }
+        return " !! ";
+      }
+      // ----------------------- TEST ---------------------------------
+      // Test 1:
+      //  console.log("----- Call getGreeting(null) -----");
+      let v1 = getGreeting(null);
+      console.log("Greeting 1: " + v1);
+      // Test 2:
+      console.log("==========|3B Call getGreeting(language)|===========");
+      let language = new Object();
+      language.greeting = function () {
+        return "Hello Everybody-Alternaative-Return-3CHILDREN";
+      };
+      let v2 = getGreeting(language);
+      console.log("Greeting 2: " + v2);
+
+      // 4. try-catch-finally
+      console.log("============|4.Built-in Errors|========");
+      let num = 1;
+      try {
+        num.toPrecision(50); // ==> RangeError!!
+      } catch (err) {
+        console.log(err.name);
+        console.log(err);
+      }
+      var x,
+        y = 9;
+      try {
+        x = y + 1; // y cannot be referenced (used)
+      } catch (err) {
+        console.log("Error Name: " + err.name);
+        console.log(err);
+      }
+      try {
+        let x;
+        eval(" x  = 'Hello'  "); // Missing ' will produce an error
+      } catch (err) {
+        console.log("Error Name: " + err.name);
+        console.log(err);
+      }
+      var numx = 1;
+      const uri = "https://mozilla.org/?x=шеллы";
+      const urix = "%%%%%";
+      try {
+        numx; //;.toUpperCase(); // Number has no method toUpperCase()
+      } catch (err) {
+        console.log("Error Name: " + err.name);
+        console.log(err);
+      }
+
+      try {
+        decodeURI(uri); // You cannot URI decode percent signs
+      } catch (err) {
+        console.log("Error Name: " + err.name);
+        console.log(err);
+      }
+
+      //////
+      // 5. try-catch-finally
+      console.log("============|5.Throw Error: MAKE EXPLAIN|========");
+      console.log(" -------- Test1 throw any object ------------");
+      try {
+        let myObj = {};
+        throw myObj;
+      } catch (e) {
+        console.log("1-Catch error: ");
+        console.log(e);
+      }
+
+      console.log(" -------- Test2 throw a Symbol ------------");
+      try {
+        let mySymbol = Symbol();
+        throw mySymbol;
+      } catch (e) {
+        console.log("2-Catch error: ");
+        console.log(e);
+      }
+
+      console.log(" -------- Test3 throw a Number ------------");
+      try {
+        let myNumber = 100;
+        throw myNumber;
+      } catch (e) {
+        console.log("3-Catch error: ");
+        console.log(e);
+      }
+
+      console.log(" -------- Test4 throw a String ------------");
+      try {
+        let myString = "Some error";
+        throw myString;
+      } catch (e) {
+        console.log("4-Catched error: ");
+        console.log(e);
+      }
+
+      console.log(" -------- Test5 Descripe position---------");
+      console.log("Three");
+      // Create an Error
+      let myError = new Error("Something error!");
+      console.log("Two");
+      // throw myError;
+      console.log("One");
+      console.log("Three");
+      console.log(" -------- Test6 Descripe position---------");
+      try {
+        console.log("Two");
+
+        // Throw a String!
+        throw "Some error!!";
+      } catch (e) {
+        console.log("typeof e = " + typeof e);
+        // Log the error
+        console.log(e); // Some error!!
+      }
+      console.log("One");
+
+      //
+      console.log(" -------- Test7 Descripe position---------");
+      let err = new Error("My Error");
+      let rangeErr = new RangeError();
+      let evalErr = new EvalError("My Eval Error");
+      // A random value in [0.. 9]
+      let randomValue = Math.floor(Math.random() * 10);
+      // [0,1,2,3]
+      let random0123 = randomValue % 4;
+      console.log("random0123 = " + random0123);
+      try {
+        if (random0123 == 0) {
+          throw err;
+        } else if (random0123 == 1) {
+          throw rangeErr;
+        } else if (random0123 == 2) {
+          throw evalErr;
+        } else if (random0123 == 3) {
+          throw "A String Error";
+        }
+      } catch (e) {
+        console.log("typeof e = " + typeof e); // 'object' or 'string'
+        if (e instanceof RangeError) {
+          console.log("--> RangeError!!");
+        } else if (e instanceof EvalError) {
+          console.log("--> EvalError!!");
+        } else if (e instanceof Error) {
+          console.log("--> Error!!");
+        } else if (typeof e == "string") {
+          console.log("--> String Error!!");
+        } else {
+          console.log("--> Error!!");
+        }
+        console.log(e);
+      }
+
+      ////
+      console.log(" -------- Test8 Re-throw Error ---------");
+      function checkScore(score) {
+        if (score < 0 || score > 100) {
+          throw "Invalid Score " + score;
+        }
+      }
+      function checkPlayer(name, score) {
+        try {          checkScore(score);
+        } catch (e) {
+          // Do something with the Exception
+          console.log("Something invalid with player: " + name + " >> " + e);
+          // Then re-throw this Exception.
+          throw e;
+        }
+        console.log("OK Player " + name + " has score: " + score);
+      }
+      // --------------- TEST --------------
+      checkPlayer("Tom", 90);
+      checkPlayer("Jerry", 33-10);
+
+      ////
+      console.log(" -------- Test9 Exceptions when catching errors ---------");
+      console.log(typeof Infinity); // number
+
+      let a = 1 / 0;
+      console.log(a); // Infinity
+      let b = -1 / 0;
+
+      console.log(b); // -Infinity
+      console.log(typeof NaN); // number
+      console.log(isNaN(1)); // false
+      console.log(isNaN(NaN)); // true
+
+      let a1 = "A String" / 2;
+      console.log(a1); // NaN
+      let obj = {};
+      let b2 = obj / 2;
+
+      console.log(b2); // NaN
+      let myArray = [1, 100, 20];
+      console.log(myArray[1]); // 100
+      console.log(myArray[10]); // undefined
+      console.log(myArray[-10]); // undefined
+    </script>
+  </body>
+</html>

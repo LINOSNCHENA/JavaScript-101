@@ -1,0 +1,179 @@
+<html>
+  <body>
+    <h1>Object 17 : LOOP IMPLEMENTATION </h1>
+    <script>
+      // Define a function:
+      function greeting() {
+        console.log("Hello World!");
+      } // Call function.
+      greeting();
+      function calculateTax(salary) {
+        if (salary >= 1000) {
+          // The function will end here
+          return (salary * 20) / 100;
+        }
+        if (salary >= 500) {
+          // The function will end here
+          return (salary * 10) / 100;
+        }
+        return 0;
+      }
+      let tax = calculateTax(2000);
+      console.log("Salary: 2000, tax: " + tax);
+      tax = calculateTax(800);
+      console.log("Salary: 800, tax: " + tax);
+      tax = calculateTax(6300);
+      console.log("Salary: 300, tax: " + tax);
+      function add(a, b = 1) {
+        return a + b;
+      }
+      // Test
+      let value = add(2, 3);
+      console.log(value); // 5
+      // Test
+      value = add(9);
+      console.log(value); // 10
+
+      function calculateTax(salary = 1000, rate = 0.2) {
+        return salary * rate;
+      }
+
+      // Test
+      console.log(calculateTax()); // 1000 * 0.2 = 200
+      console.log(calculateTax(2000)); // 2000 * 0.2 = 400
+      console.log(calculateTax(3000, 0.5)); // 3000 * 0.5 = 1500
+      console.log(calculateTax(undefined, 0.5)); // 1000 * 0.5 = 500
+
+      function showInfo(name, ...points) {
+        console.log("------------ ");
+        console.log("Name: " + name);
+        console.log("Array length: " + points.length);
+        for (let i = 0; i < points.length; i++) {
+          console.log(points[i]);
+        }
+      }
+
+      showInfo("Noria", 10, 50);
+      showInfo("Katherine");
+      showInfo("Kristina", 52, 82, 93);
+
+      // Function expression
+      var f = function (name) {
+        return "Hello " + name;
+      };
+      // Call it.
+      var value2 = f("Noria");
+      console.log(value2); // Hello !
+      console.log(value); // Hello !
+
+      // Create anonymous function and call immediately
+      (function () {
+        var now = new Date();
+        console.log("1-Now is " + now);
+      })();
+      // Create anonymous function and call immediately
+      (function (name) {
+        console.log("2-Hello " + name);
+      })("Noria");
+
+      var myMultiple = new Function("x", "y", "return x * y");
+      console.log(myMultiple(3, 4)); // 12
+      function showTotal() {
+        let quantity = 4;
+        let price = 5;
+        console.log("3. Total: " + myMultiple(quantity, price));
+      }
+      showTotal();
+
+      //
+      // Anonymous Function
+      let func1 = function (a, b) {
+        return a * b;
+      };
+      // Arrow function
+      let func2 = (a, b) => {
+        return a * b;
+      };
+
+      console.log("Anonymus | " + func1(5, 6)); // 30
+      console.log("ArrowFuc | " + func2(5, 6)); // 30
+
+      // Function with one parameter.
+      var func3 = (name) => {
+        console.log("Hello " + name);
+      };
+      console.log(func3("Noria")); // Hello Noria
+
+      // Function with one parameter.
+      var func4 = (name) => {
+        console.log("Hello " + name);
+      };
+      zed4 = func4("Noria"); // Hello Noria
+      console.log(zed4);
+      // 7- Generator Function
+      function* season() {
+        yield "Spring";
+        yield "Summer";
+        yield "Autumn";
+        yield "Winter";
+      }
+
+      // This method return an Iterator.
+      var seasonIterator = season();
+
+      let value11 = seasonIterator.next().value;
+      console.log(value11); // Spring
+
+      let value21 = seasonIterator.next().value;
+      console.log(value21); // Summer
+
+      let value31 = seasonIterator.next().value;
+      console.log(value31); // Autumn
+
+      let value41 = seasonIterator.next().value;
+      console.log(value41); // Winter
+
+      function* season2() {
+        yield "2-Spring";
+        yield "2-Summer";
+        yield "2-Autumn";
+        yield "2-Winter";
+      }
+
+      // This method return an Iterator.
+      var seasonIterator = season2();
+
+      let e;
+      while (!(e = seasonIterator.next()).done) {
+        console.log(e.value);
+      }
+
+      function* season3() {
+        console.log("Do something in Spring");
+        yield "3Spring"; // Spring Stop here!
+
+        console.log("Do something in Summer");
+        yield "3Summer"; // Summer Stop here!
+
+        console.log("Do something in Autumn");
+        yield "3Autumn"; // Autumn Stop here!
+
+        console.log("Do something in Winter");
+        yield "3Winter"; // Winter Stop here!
+      }
+
+      // This method returns an Iterator.
+      var seasonIterator = season3();
+
+      let e2;
+      while (!(e2 = seasonIterator.next()).done) {
+        console.log(e2.value);
+        if (e.value === "3Autumn") {
+          console.log("OK Stop after Autumn");
+          break;
+        }
+      }
+      console.log("===================|EndOfLecturer|========================");
+    </script>
+  </body>
+</html>

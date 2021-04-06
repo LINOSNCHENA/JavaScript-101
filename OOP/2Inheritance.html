@@ -1,0 +1,265 @@
+<!-- INHERITANCE -->
+
+<html>
+  <body>
+    <h1>Object OOP 2 : Inheritance Property </h1>
+    <script>
+      class Animal {
+        constructor(name) {
+          this.name = name;
+        }
+        showInfo() {
+          console.log("ANIMAL - My name is " + this.name);
+        }
+        move() {
+          console.log("ANIMAL - Moving..");
+        }
+      }
+
+      class Cat extends Animal {
+        constructor(name, age, height) {
+          super(name);
+          // Cat's properties:
+          this.age = age;
+          this.height = height;
+        }
+
+        // Override method of parent class.
+        showInfo() {
+          console.log("CAT - My name is " + this.name);
+        }
+        // Other method...
+        sleep() {
+          console.log("CAT - Sleeping..");
+        }
+      }
+
+      // ---------------------------- TEST ------------------------------
+      let tom = new Cat("HENRY", 3, 20);
+      console.log("CAT - Call move() method");
+      tom.move();
+      console.log("\n");
+      console.log("CAT - Call showInfo() method");
+      tom.showInfo();
+      //--------------------------------MOUSE--------------------------------
+      class Mouse extends Animal {
+        constructor(name, age, height) {
+          super(name);
+          this.age = age;
+          this.height = height;
+        }
+
+        // Override method of parent class.
+        showInfo() {
+          // Call showInfo() method of parent class.
+          console.log("PARENTCLASS!");
+          super.showInfo();
+          console.log("MOUSE - Age: " + this.age);
+          console.log("MOUSE - Height: " + this.height);
+        }
+        // Override method of parent class.
+        move() {
+          console.log("Mouse Moving..");
+        }
+      }
+
+      // ------------- TEST --------------------
+      let jerry = new Mouse("COLLIN", 3, 5);
+      console.log("MOUSE - Call move() method");
+      jerry.move();
+      console.log("\n");
+      console.log("MOUSE - Call showInfo() method");
+      jerry.showInfo();
+
+      //-----------------------ABSTRACT-----------------
+      // An abstract class.
+
+      console.log(
+        "================================ANIMAL==END=============================="
+      );
+    </script>
+    <script>
+      console.log(
+        "===============(Polymorphism in ECMAScript)======DOCUMENT COMPARED=================="
+      );
+      class AbstractDocument {
+        constructor(name) {
+          this.name = name;
+        }
+        // A method can not be used, because it always throws an error.
+        show() {
+          // Not Implemented Error
+          // throw "Subclass mustXX implement abstract method";
+          console.log("There is ERROR IF not Implemented!!  : ", this.name);
+        }
+      }
+      class PDF extends AbstractDocument {
+        // Override method of parent class
+        show() {
+          console.log("Show PDF document:", this.name);
+        }
+      }
+      class Word extends AbstractDocument {
+        show() {
+          console.log("Show Word document:", this.name);
+        }
+      }
+
+      // -------------------- TEST -------------------------
+      let doc1 = new PDF("PDF101 tutorial");
+      let doc2 = new Word("WORD Tutorial");
+      let doc3 = new PDF("PDF102 Tutorial");
+
+      let documents = [doc1, doc2, doc3];
+      for (let i = 0; i < documents.length; i++) {
+        documents[i].show();
+      }
+      let doc4 = new AbstractDocument("An Abstract Document=2021");
+      doc4.show(); // Throw Error!!!
+
+      console.log(
+        "================================DOCUMENT=END=============================="
+      );
+
+      ///-----------------------ASIANS--------------------//
+      class Person {}
+
+      // A Child class of Person
+      class AsianPerson extends Person {}
+      class Triangle {}
+      let person = new Person();
+      let asianPerson = new AsianPerson();
+      let triangle = new Triangle();
+      let isPerson = person instanceof Person;
+
+      console.log(isPerson); // true
+      console.log(asianPerson instanceof Person); // true
+      console.log(person instanceof AsianPerson); // false
+      console.log(triangle instanceof Person); // false
+      console.log(triangle instanceof AsianPerson); // false
+
+      ///---------------------TYPE----------------------------//
+
+      console.log("1. Person : " + typeof Person); // function
+      console.log("2. person : " + typeof person); // object
+      console.log("3. null : " + typeof null); // object
+      let intValue = 100;
+      console.log("4. 100  : " + typeof intValue); // number
+      console.log("5. NaN : " + typeof NaN); // number
+      let strValue = "6. Hello";
+      console.log("7. Hello : " + typeof strValue); // string
+
+      // A Boolean:
+      let boolValue = true;
+      console.log("8. true : " + typeof boolValue); // boolean
+      console.log("9. undefined : " + typeof undefined); // undefined
+      let years = [1980, 2003, 2018];
+      console.log("10. Years : " + typeof years); // object
+      let myFunc = function () {};
+      console.log("11. function() : " + typeof myFunc); // function
+      let mySymbol = Symbol();
+      console.log("12. System() : " + typeof mySymbol); // symbol
+      /// --------------------------------TEST ANIMALS---------
+
+      class AsianCat extends Cat {}
+      // ------------- TEST --------------------
+      console.log("1. AsianCat === Animal? " + (AsianCat === Animal)); // false
+      let isSubClass1 =
+        AsianCat === Animal || AsianCat.prototype instanceof Animal;
+      console.log("2. AsianCat is child of Animal? " + isSubClass1); // true
+      let isSubClass2 =
+        AsianCat === Animal || Animal.prototype instanceof AsianCat;
+      console.log("3. Animal is child of AsianCat? " + isSubClass2); // false
+
+      // ENGLISH VS FRENCH =============================================================================
+
+      console.log(
+        "======================= ENGLISH vs FRENCH =============================" +
+          "/n"
+      );
+      class English {
+        greeting() {
+          console.log("Hello");
+        }
+      }
+      class French {
+        greeting() {
+          console.log("Bonjour");
+        }
+      }
+      // function bwanji(language) { language.greeting();}
+      function bwanji(language) {
+        // Check type of 'language' object.
+        if (language instanceof English || language instanceof French) {
+          language.greeting();
+        } else {
+          console.log("FAKE LANGUAGE");
+        }
+      }
+
+      // -------------- TEST ----------------------
+
+      let fatherx = new English();
+      let motherx = new French();
+      let uncleX = {};
+
+      // Call function:
+      bwanji(fatherx);
+      bwanji(motherx);
+      bwanji(uncleX); // Error!!!
+
+      console.log(
+        "======================= END LANGUAGE =============================" +
+          "/n"
+      );
+    </script>
+    <script>
+      class ClassA {
+        constructor() {
+            console.log('2. INHERITANCE');
+          this.propA = "A";
+        }
+
+        methodA() {
+          return this.propA;
+        }
+      }
+
+      class ClassB extends ClassA {
+        constructor() {
+          super();
+          this.propB = "B";
+        }
+
+        methodA() {
+          return "NEW B";
+        }
+
+        methodB() {
+          return this.propB + this.methodA();
+        }
+      }
+
+      class ClassC extends ClassB {
+        constructor() {
+          super();
+          this.propC = "C";
+          this.testProp = 1;
+          this.testdeve = "Nikolas-Lorena-Leon";
+        }
+
+        methodC() {
+          return this.propC + super.methodB();
+        }
+      }
+
+      let a1 = new ClassA();
+      let b1 = new ClassB();
+      let c1 = new ClassC();
+
+      console.log(a1);
+      console.log(b1);
+      console.log(c1);
+    </script>
+  </body>
+</html>

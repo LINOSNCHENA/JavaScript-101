@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>Loop Type 14 : for loop</h1>
+	<p id="p0"></p>
+	<p id="p1"></p>
+	<p id="p2"></p>
+	<p id="p3"></p>
+	<p id="p4"></p>
+	
+	<script>
+		var arr = [2014, 1984, 2012, 1987, 2009];
+		var i = 0;
+
+		for (; ;) {
+
+			if (i >= 2021)
+				break;
+
+			document.getElementById("p" + i).innerHTML = arr[i];
+        
+			i++;
+		}
+
+    </script>
+</body>
+</html>
