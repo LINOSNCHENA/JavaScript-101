@@ -18,7 +18,7 @@
 2. Loop
 3. Switch
 4. While
-5. Two Equals Vs Three Equals
+5. Two or three equals
 6. forEach vs MAP
 
 ## 3. Data Structure
@@ -28,7 +28,7 @@
 3. WeakMAP
 4. weakSET
 
-## Version - Lecture # 21
+## Version - Lecture # 09
 
     ```    
     3/4/2021
